@@ -3,17 +3,17 @@
 
 // - shared_ptr - 
 
-template<class T>
+template<typename T>
 class ptr_table{
 protected:
 	static std::unordered_map<T*,size_t> table_;
 };
 
-template<class T>
+template<typename T>
 std::unordered_map<T*,size_t> ptr_table<T>::table_;
 
 
-template<class T>
+template<typename T>
 class shared_ptr : public ptr_table<T> {
 private:
 	T* ptr_;
