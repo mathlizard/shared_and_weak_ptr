@@ -37,17 +37,19 @@ public:
 		}
 	}
 	
-	shared_ptr& operator=(shared_ptr<T> const& other) noexcept { 
+	shared_ptr<T>& operator=(shared_ptr<T> const& other) noexcept { 
 		if(--table_[ptr_] == 0u){
 			table_.erase(ptr_);
 			delete ptr_;
 		}
 		ptr_ = other.ptr_;
 		++table_[ptr_];
+		return *this;
 	}
 	
-	shared_ptr& operator=(shared_ptr<T>&& other) noexcept { 
+	shared_ptr<T>& operator=(shared_ptr<T>&& other) noexcept { 
 		std::swap(ptr_,other.ptr_);
+		return *this;
 	}
 	
 	operator bool() const noexcept { return ptr_ == nullptr; }
