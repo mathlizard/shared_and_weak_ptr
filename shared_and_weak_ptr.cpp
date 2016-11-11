@@ -87,14 +87,17 @@ public:
 	
 	weak_ptr& operator=(weak_ptr<T> const& other) noexcept {
 		ptr_ = other.ptr_;
+		return *this;
 	}
 	
 	weak_ptr& operator=(shared_ptr<T> const& other) noexcept {
 		ptr_ = other.get();
+		return *this;
 	}
 	
 	weak_ptr& operator=(weak_ptr<T>&& other) noexcept { 
 		std::swap(ptr_,other.ptr_);
+		return *this;
 	}
 	
 	size_t use_count() const noexcept { return table_[ptr_]; }
